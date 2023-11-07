@@ -8,11 +8,11 @@ const MoreDetails = (props) => {
 
     const { id } = useParams();
     const { selectedCarId } = useCarContext();
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   const [carDetails, setCarDetails] = useState({});
   useEffect(() => {
     console.log("Id selected is ",id)
-      axios.get(`http://localhost:8090/Cars/getCarsById/${id}`)
+      axios.get(`http://localhost:8090/getCarsById/${id}`)
       .then((res) => {
         setCarDetails(res.data);
         console.log("fetched succesfully: ",res.data)

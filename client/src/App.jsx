@@ -59,8 +59,8 @@ const App = () => {
         </button>
       )}
     </div>
-        <Navbar />
       <CarContextProvider> 
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/search/:query" element={<SearchResults />}></Route>

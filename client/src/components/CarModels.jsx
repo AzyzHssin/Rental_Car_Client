@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import axios from 'axios';
 // import DisplayModelsDetails from './DisplayModelsDetails';
 import OneCar from "./OneCar"
 import "../carCardsStyling.css"
+import { useCarContext } from '../pages/CarContext';
+import Search from './constants/Search';
 var myCars;
 // {"id":1,"marque":"bmw","puissence":12,"option":"full option","released_date":"2009-02-13T23:31:30.000+00:00","description":"a great car"},"photo2":null,"photo1":null,"photo3":null,"photo4":null}
 const CarModels =()=>{
     const [data, setData] = useState([]);
-
+   const {lookingFor} =useCarContext();
     useEffect(()=>{
-        axios.get('http://localhost:8090/Cars/getAllCars')
+        axios.get('http://localhost:8090/getAllCars')
           .then((res) => {
-            setData(res.data);
+            setData(res.data.filter(element=>element.model.toUpperCase().includes(lookingFor.toUpperCase())));
+            
             // myCars=res.data;
           })
           .catch(err => console.log(err));
-      },[])
+      },[data])
     return(
       <>
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -31,6 +35,8 @@ const CarModels =()=>{
     <div className="Tit">Car Catalogue</div>
     <div className="DesTit">Explore our cars you might like!</div>
   </div>
+<Search />
+
   <div className="theChamp PP">
     <select id="cars">
       <option value="volvo">Price</option>
@@ -61,14 +67,14 @@ const CarModels =()=>{
   </div>
 </div>
 <div className="leHole">
-
+{/* .filter(element=>{if(element.includes(lookingFor)){return element}}) */}
         {data.map((car, i) => (
          /*    <DisplayModelsDetails
               car={car}
               key={i}
             /> */
             <>
-            
+           {console.log(`car ${i}`,car)}
               <OneCar data={car}/>
               {/* {console.log(car)} */}
             </>

@@ -7,7 +7,11 @@ import  {UserAuth} from '../../context/AuthContext'
 const Navbar = () => {
 
   const { user, logOut } = UserAuth();
-    
+  const [ValeurRecherche,setValeurRecherche]=useState({});
+ /*  const handleChangeRecherche=(val)=>{
+    setValeurRecherche(val);
+    console.log(ValeurRecherche,"searching for")
+  } */
     const handleSignOut = async () => {
         try {
           await logOut()
@@ -47,7 +51,7 @@ const Navbar = () => {
 
             <a href="/" id="links" className="border-b-2 border-transparent hover:border-black-800 hover:text-black-800 dark:hover:text-black  ease-in duration-300 mx-1.5 sm:mx-6">About</a>
 
-            <Link to="/CarModels" id="links" className="border-b-2 border-transparent hover:border-black-800 hover:text-black-800 dark:hover:text-black  ease-in duration-300 mx-1.5 sm:mx-6">Car Models</Link>
+            <Link  to={{pathname: '/CarModels',state: { data: "aziz" }}} id="links" className="border-b-2 border-transparent hover:border-black-800 hover:text-black-800 dark:hover:text-black  ease-in duration-300 mx-1.5 sm:mx-6">Car Models</Link>
 
             <a href="/" id="links" className="border-b-2 border-transparent hover:border-black-800 hover:text-black-800 dark:hover:text-black  ease-in duration-300 mx-1.5 sm:mx-6">Categories</a>
 
@@ -55,7 +59,7 @@ const Navbar = () => {
 
            <Link to='/contact' id="links" className="border-b-2 border-transparent hover:border-black-800 hover:text-black-800 dark:hover:text-black  ease-in duration-300 mx-1.5 sm:mx-6">Contact</Link>
 
-<Search />
+{/* <Search handleChangeRecherche={handleChangeRecherche}/> */}
 
             <a href="https://www.facebook.com" className="hover:text-black-800 dark:hover:text-black mx-1.5 sm:mx-3 ">
            

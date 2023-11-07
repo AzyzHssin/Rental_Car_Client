@@ -4,7 +4,7 @@ const CarContext = createContext();
 
 export const CarContextProvider = ({ children }) => {
   const [selectedCarId, setSelectedCarId] = useState(null||localStorage.selectedCarId);
-
+  const [lookingFor,setLookingFor]=useState("");
   const carsel = (num) => {
     setSelectedCarId(num);
     localStorage.setItem('selectedCarId', num); 
@@ -19,7 +19,7 @@ export const CarContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <CarContext.Provider value={{ selectedCarId, carsel }}>
+    <CarContext.Provider value={{ selectedCarId, carsel,lookingFor,setLookingFor }}>
       {children}
     </CarContext.Provider>
   );
