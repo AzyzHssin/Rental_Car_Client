@@ -28,7 +28,7 @@ const Signin = () => {
     
 
         axios.post("http://localhost:8090/Athentication/authenticate",{"username":email,"password":password}).then((res)=>{
-            console.log(res)
+            // console.log(res)
             
             if (res.data.token!=null){
                 // set the token 
@@ -36,6 +36,11 @@ const Signin = () => {
             // set the username
             // redirect to the home page
             console.log("logIned")
+            localStorage.setItem('Authorization',res.data.token )
+            localStorage.setItem('username',res.data.username )
+            localStorage.setItem('role',res.data.role )
+            console.log(localStorage)
+
             
         }else{
             // print tost

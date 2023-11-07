@@ -129,7 +129,12 @@ console.log("bytearray",byteArray)
     e.preventDefault();
     try {
       console.log(formData,"is the object to send")
-      const response =await axios.post('http://localhost:8090/QueryCars/saveNewCar', formData);
+      const options = {
+        headers: {
+            Authorization: localStorage.Authorization
+        }
+    };
+      const response =await axios.post('http://localhost:8090/secure/admin/saveNewCar',options, formData);
       /* window.location.reload(); */
       console.log("response: ",response)    } 
       catch (error) {
